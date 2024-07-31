@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar';
+import GetDonePage from './GetDonePage';
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <>
     <div className='flex flex-col m-0 p-0 '>
     <Navbar />
+    <GetDonePage/>
     </div>
     </>
   )
