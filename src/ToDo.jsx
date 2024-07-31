@@ -5,7 +5,7 @@ import CreateTask from "./CreateTask";
 function ToDo({taskList, onChange ,onAdd}){
 
 
-    const showCreateTask = true;
+    const [showCreateTask,setShowCreateTask] = useState(false);
 
     const unDoneTask = Object.keys(taskList).filter((key) => {if(taskList[key]){
         return key;
@@ -32,11 +32,10 @@ function ToDo({taskList, onChange ,onAdd}){
                 <span>{task}</span></div>
             })}
         </div>
-        {!showCreateTask && <button className="flex items-center gap-3 border-2 border-yellow-500 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-3 py-1.5 rounded-full text-sm mt-4">
+        {!showCreateTask && <button onClick = {function() {setShowCreateTask(true)}} className="flex items-center gap-3 border-2 border-yellow-500 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-3 py-1.5 rounded-full text-sm mt-4">
         <FaPlus />
         <span>Add a task</span>
-        </button>}
-        {showCreateTask && <CreateTask />
+        </button> || <CreateTask onCancel = {setShowCreateTask} onAdd = {onAdd}/>
         }
         </>
     )
