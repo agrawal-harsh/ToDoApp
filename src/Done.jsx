@@ -1,6 +1,7 @@
 import React from "react";
+import { RxCrossCircled } from "react-icons/rx";
 
-function Done({taskList, onChange }){
+function Done({taskList, onChange,onRemove }){
 
     const unDoneTask = Object.keys(taskList).filter((key) => {if(!taskList[key]){
         return key;
@@ -18,7 +19,8 @@ function Done({taskList, onChange }){
         <div className="">
             <h3 className="my-4 text-lg font-semibold">Things Done</h3>
             {unDoneTask.map((task)=>{
-                return <div className="mt-1">
+                return <div className="mt-1 flex items-baseline">
+                <RxCrossCircled onClick = {() => onRemove(task)} className ="text-yellow-500 self-center"/>
                 <input type="checkbox" 
                 checked = {true} 
                 onChange={function(){

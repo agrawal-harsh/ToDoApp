@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import CreateTask from "./CreateTask";
+import { RxCrossCircled } from "react-icons/rx";
 
-function ToDo({taskList, onChange ,onAdd}){
+function ToDo({taskList, onChange ,onAdd,onRemove}){
 
 
     const [showCreateTask,setShowCreateTask] = useState(false);
@@ -23,13 +24,15 @@ function ToDo({taskList, onChange ,onAdd}){
         <div className="">
             <h3 className="my-4 text-lg font-semibold">Things to do</h3>
             {unDoneTask.map((task)=>{
-                return <div className="mt-1">
+                return <div className="mt-1 flex items-baseline">
+                <RxCrossCircled onClick = {() => onRemove(task)}  className ="text-yellow-500 self-center"/>
                 <input type="checkbox" 
                 checked = {false} 
                 onChange={function(){
                     handleChange(task)
                 }} className="w-6"/>
-                <span>{task}</span></div>
+                <span>{task}</span>
+                </div>
             })}
         </div>
         {!showCreateTask && <button onClick = {function() {setShowCreateTask(true)}} className="flex items-center gap-3 border-2 border-yellow-500 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-3 py-1.5 rounded-full text-sm mt-4">

@@ -23,18 +23,23 @@ function GetDonePage(){
         setTaskList(newTaskList);
     }
 
+    function onRemove(task){
+        const newTaskList = {...taskList};
+        delete newTaskList[task];
+        setTaskList(newTaskList);
+    }
     useEffect(()=>{
       const TaskListString = JSON.stringify(taskList);
       localStorage.setItem("taskList",TaskListString)
     },[taskList])
-    
+
 
     return(
         <>
-        <div className="px-4 mt-8">
+        <div className="px-4 mt-8 ">
             <h2 className="text-3xl font-bold ">Things to get done</h2>
-            <ToDo taskList = {taskList} onChange= {onChange} onAdd = {onAdd}/>
-            <Done taskList = {taskList} onChange= {onChange}/>
+            <ToDo taskList = {taskList} onChange= {onChange} onAdd = {onAdd} onRemove = {onRemove}/>
+            <Done taskList = {taskList} onChange= {onChange} onRemove={onRemove}/>
         </div>
         </>
     )
